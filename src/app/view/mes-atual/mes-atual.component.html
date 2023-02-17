@@ -1,0 +1,45 @@
+<mat-grid-list cols="2" rowHeight="2:2">
+
+
+    <mat-grid-tile>
+        <table mat-table [dataSource]="dataSourceReceita" class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="valor">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Receita </th>
+              <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+              <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalReceita | currency : 'R$ ' }} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedReceitaColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedReceitaColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedReceitaColumns"></tr>
+          </table>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile>
+        <table mat-table [dataSource]="dataSourceDespesa" class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="nota">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Nota </th>
+              <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+              <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+            </ng-container>
+
+            <ng-container matColumnDef="valor">
+                <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+                <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+                <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalDespesa | currency : 'R$ ' }} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedDespesaColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedDespesaColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedDespesaColumns"></tr>
+          </table>
+    </mat-grid-tile>
+
+    
+</mat-grid-list>
+  

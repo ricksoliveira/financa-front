@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="titleRow">
+      <span class="titleText">Finanças</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-tab-group class="tabGroup">
+
+  <mat-tab label="Categorias">
+    <div fxLayout="column" fxLayoutAlign="space-evenly center" style="padding: 1%; margin-right: 20%; margin-left: 20%;">
+      <app-categoria>
+
+      </app-categoria>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Mês Atual">
+    <div fxLayout="column" fxLayoutAlign="space-evenly center" style="padding: 1%; background-color: cyan;">
+      <app-mes-atual>
+
+      </app-mes-atual>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Meses Anteriores">
+    <div style="padding: 1%;">
+      <app-meses-anteriores>
+
+      </app-meses-anteriores>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Estatísticas">
+    <app-estatisticas>
+
+    </app-estatisticas>
+  </mat-tab>
+  
+</mat-tab-group>
