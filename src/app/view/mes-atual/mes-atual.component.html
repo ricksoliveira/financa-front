@@ -1,0 +1,146 @@
+
+<mat-grid-list cols="5" rowHeight="50px" style="margin-top: 3%;">
+
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile class="rendaDespesaLucroTxt">
+    Renda:&emsp;<div class="rendaDespesaLucroValue">
+      {{totalReceita | currency : 'R$&ensp;' }}
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="rendaDespesaLucroTxt">
+    Despesa:&emsp;<div class="rendaDespesaLucroValue">
+      {{totalParcial | currency : 'R$&ensp;' }}
+    </div>
+  </mat-grid-tile>
+
+  
+  <mat-grid-tile class="rendaDespesaLucroTxt">
+    Lucro mensal:&emsp;<div class="rendaDespesaLucroValue">
+      {{totalReceita-totalParcial | currency : 'R$&ensp;' }}
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+
+</mat-grid-list>
+
+<mat-grid-list cols="1" rowHeight="75px" style="margin-top: 1%;">
+
+  <mat-grid-tile style="background-color: white;">
+    <div class="addButtonDiv">
+      <button matTooltip="Adicionar novo Gasto ou Receita" mat-fab color="primary" style="width: 55px; height: 55px;" (click)="openAdicionarDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+
+<mat-grid-list cols="4" rowHeight="70px" style="margin-top: 2%;">
+
+  <mat-grid-tile></mat-grid-tile>
+
+  <mat-grid-tile>
+    <div>
+      <mat-form-field style="width: 20rem;">
+        <mat-label>Filtro Despesa</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #filter>
+      </mat-form-field>
+    </div>
+    
+  </mat-grid-tile>
+  
+</mat-grid-list>
+
+
+
+
+
+<mat-grid-list cols="4" rowHeight="1:4">
+
+  <mat-grid-tile>
+    <div class="receitaDiv">
+      <table mat-table [dataSource]="dataSourceReceita" class="mat-elevation-z8" matTooltip="Todas as suas receitas deste mês">
+
+        <ng-container matColumnDef="nota">
+          <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Receita </th>
+          <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+          <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+          <td mat-cell *matCellDef="let element" class="matCell"> {{element.valor | currency : 'R$ ' }} </td>
+          <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalReceita | currency : 'R$ ' }} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedReceitaColumns" class="headerFooterClass"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedReceitaColumns;" class="rowClass"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedReceitaColumns" class="headerFooterClass"></tr>
+      </table>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div class="despesaDiv">
+      <table mat-table [dataSource]="dataSourceDespesa" class="mat-elevation-z8" matTooltip="Todas as suas despesas deste mês">
+        <ng-container matColumnDef="nota">
+          <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Despesa Total </th>
+          <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+          <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+            <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+            <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalParcial | currency : 'R$ ' }} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedDespesaColumns" class="headerFooterClass"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedDespesaColumns;" class="rowClass"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedDespesaColumns" class="headerFooterClass"></tr>
+      </table>
+    </div>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+    <div class="resultDiv"  *ngIf="resultadoVisivel">
+        <table mat-table [dataSource]="dataSourceResultado" class="mat-elevation-z8">
+            <ng-container matColumnDef="nota">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> {{categoriaNome}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+              <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="valor">
+                <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+                <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+                <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalResultado | currency : 'R$ ' }} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedResultadoColumns" class="headerFooterClass"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedResultadoColumns;" class="rowClass"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedResultadoColumns" class="headerFooterClass"></tr>
+        </table>
+    </div>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+    <div class="dropDownDiv">
+        <mat-form-field class="dropDown" appearance="fill" style="width: 20rem;" matTooltip="Selecione uma categoria para ver todos os gastos">
+            <mat-label>Exibir gastos por Categoria</mat-label>
+            <mat-select (selectionChange)="onSelectedCategoria($event.value)">
+          
+              <mat-option *ngFor="let categoria of categoriaDespesaList" [value]="categoria">
+                <div> {{categoria.categoria_nome}} </div>
+              </mat-option>
+              
+            </mat-select>
+          </mat-form-field>
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>

@@ -1,0 +1,82 @@
+
+<mat-grid-list cols="2" rowHeight="30rem" style="margin-top: 3%; margin-bottom: 3%;">
+
+
+    <mat-grid-tile>
+        <div style="width:85%;"><canvas #lucroLineChart></canvas></div>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile>
+        <div style="width:85%;"><canvas #allLineChart matTooltip="Gasto mensal por Categoria"></canvas></div>
+    </mat-grid-tile>
+
+    
+
+    <!-- <mat-grid-tile>
+        <div style="width:100%;"><canvas #contaLineChart matTooltip="GASTO MENSAL EM CONTAS"></canvas></div>
+    </mat-grid-tile> -->
+
+    
+
+
+
+    <mat-grid-tile>
+        <div style="width:85%;"><canvas #receitaDespesaLineChart></canvas></div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <div style="width:50%;"><canvas #pieChart></canvas></div>
+    </mat-grid-tile>
+
+    
+
+    <!-- <mat-grid-tile>
+        <div style="width:100%;"><canvas #mantimentoLineChart matTooltip="GASTO MENSAL EM MANTIMENTOS"></canvas></div>
+    </mat-grid-tile> -->
+
+    
+
+
+
+    <mat-grid-tile>
+        <div style="width:85%;"><canvas #receitaDespesaBarChart></canvas></div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <div class="pizzaMesesDropdown">
+            <mat-form-field appearance="fill" style="width: 16rem;" matTooltip="Selecione um mês passado para gerar um gráfico de pizza dos gastos daquele mês">
+                <mat-label>Meses fechados</mat-label>
+                <mat-select (selectionChange)="onSelected($event.value)">
+              
+                  <mat-option *ngFor="let mes of objectList" [value]="mes">
+                    <div [ngSwitch]="mes.mes">
+                      <div *ngSwitchCase="1"> Janeiro / {{mes.ano}} </div>
+                      <div *ngSwitchCase="2"> Fevereiro / {{mes.ano}} </div>
+                      <div *ngSwitchCase="3"> Março / {{mes.ano}} </div>
+                      <div *ngSwitchCase="4"> Abril / {{mes.ano}} </div>
+                      <div *ngSwitchCase="5"> Maio / {{mes.ano}} </div>
+                      <div *ngSwitchCase="6"> Junho / {{mes.ano}} </div>
+                      <div *ngSwitchCase="7"> Julho / {{mes.ano}} </div>
+                      <div *ngSwitchCase="8"> Agosto / {{mes.ano}} </div>
+                      <div *ngSwitchCase="9"> Setembro / {{mes.ano}} </div>
+                      <div *ngSwitchCase="10"> Outubro / {{mes.ano}} </div>
+                      <div *ngSwitchCase="11"> Novembro / {{mes.ano}} </div>
+                      <div *ngSwitchCase="12"> Dezembro / {{mes.ano}} </div>
+                    </div>
+                  </mat-option>
+                  
+                </mat-select>
+              </mat-form-field>
+        </div>
+    </mat-grid-tile>
+
+    
+
+    <!-- <mat-grid-tile>
+        <div style="width:100%;"><canvas #uberLineChart matTooltip="GASTO MENSAL EM UBER"></canvas></div>
+    </mat-grid-tile> -->
+
+    
+    
+</mat-grid-list>

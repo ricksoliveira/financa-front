@@ -1,0 +1,69 @@
+<div class="body">
+
+    <mat-grid-list cols="1" rowHeight="50px" style="margin-top: 3%;  margin-right: 5%;  margin-left: 5%;">
+        <mat-grid-tile class="headerText" style="background-color: #3f51b5;">Novo Gasto / Receita</mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="2" rowHeight="75px" style="margin-top: 5%; margin-right: 10%;  margin-left: 10%;">
+
+        <mat-grid-tile>
+            <mat-form-field class="example-form-field">
+              <mat-label>{{motivoTxt}}</mat-label>
+              <input matInput type="text" [(ngModel)]="formNota" [disabled]="isNotaDisabled">
+              <button *ngIf="formNota" matSuffix mat-icon-button aria-label="Clear" (click)="formNota=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+            <div class="formDropDownDiv">
+              <mat-form-field class="dropDown" appearance="fill" style="width: 16rem;">
+                <mat-label>Categorias</mat-label>
+                <mat-select (selectionChange)="onSelectedFormCategoria($event.value)">
+              
+                  <mat-option *ngFor="let categoria of categoriaList" [value]="categoria">
+                    <div> {{categoria.categoria_nome}} </div>
+                  </mat-option>
+                  
+                </mat-select>
+              </mat-form-field>
+            </div>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+            <mat-form-field class="example-form-field">
+              <mat-label>Valor</mat-label>
+              <input matInput type="number" [(ngModel)]="formValor">
+            </mat-form-field>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile></mat-grid-tile>
+    
+    </mat-grid-list>
+
+
+    <mat-grid-list cols="2" rowHeight="75px" style="margin-top: 1%; margin-right: 20%;  margin-left: 20%;">
+        
+        <mat-grid-tile>
+            <button matTooltip="Adicionar" class="buttonDiv" [disabled]="isButtonDisabled" mat-fab color="primary" (click)="adicionar()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="headerText">
+            <div mat-dialog-actions>
+                <button matTooltip="Cancelar e voltar" class="buttonDiv" mat-fab color="warn" (click)="closeDialog()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+    
+</div>
+
+

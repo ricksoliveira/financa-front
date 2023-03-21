@@ -1,0 +1,20 @@
+.body{
+    height: 25rem;
+    width: 55rem;
+}
+
+.headerText{
+    font-size: 1.65rem;
+    color: white;
+}
+
+.formDropDownDiv {
+    position: absolute;
+    top: 5px;
+}
+
+.example-form-field{
+    width: 300px;
+    position: absolute;
+    top: 5px;
+}

@@ -1,0 +1,28 @@
+.text-inside-grid {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.receitaDiv, .despesaDiv, .resultDiv, .dropDownDiv {
+    position: absolute;
+    top: 5px;
+}
+
+.rowClass{
+    height: 20px;
+    width: 5px;
+}
+
+.headerFooterClass{
+    height: 35px;
+    width: 5px;
+}
+
+.rendaDespesaLucroTxt{
+    font-size: 18px;
+}
+
+.rendaDespesaLucroValue{
+    font-weight: bold;
+}

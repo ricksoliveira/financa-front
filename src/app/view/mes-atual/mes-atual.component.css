@@ -1,0 +1,24 @@
+.receitaDiv, .despesaDiv, .resultDiv, .dropDownDiv {
+    position: absolute;
+    top: 5px;
+}
+
+.rowClass{
+    height: 30px;
+}
+
+.headerFooterClass{
+    height: 45px;
+}
+
+.addButtonDiv{
+    position: absolute;
+}
+
+.rendaDespesaLucroTxt{
+    font-size: 18px;
+}
+
+.rendaDespesaLucroValue{
+    font-weight: bold;
+}

@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row class="titleRow">
+      <span class="titleText">Bem vindo às suas finanças, {{nome}} {{sobrenome}} !</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" matTooltip="Deslogar" (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+<mat-tab-group class="tabGroup">
+
+  <mat-tab label="Mês Atual">
+    <div style="padding: 1%;">
+      <app-mes-atual>
+
+      </app-mes-atual>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Meses Anteriores">
+    <div style="padding: 1%;">
+      <app-meses-anteriores>
+
+      </app-meses-anteriores>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Estatísticas">
+    <div style="margin-bottom: 2%;">
+      <app-estatisticas>
+
+      </app-estatisticas>
+    </div>
+  </mat-tab>
+
+  
+  <mat-tab label="Categorias">
+    <div style="padding: 1%; margin-right: 20%; margin-left: 20%;">
+      <app-categoria>
+
+      </app-categoria>
+    </div>
+  </mat-tab>
+  
+</mat-tab-group>

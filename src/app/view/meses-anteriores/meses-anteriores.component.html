@@ -1,0 +1,161 @@
+<mat-grid-list cols="5" rowHeight="50px" style="margin-top: 3%;">
+
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile class="rendaDespesaLucroTxt">
+    Renda:&emsp;<div class="rendaDespesaLucroValue">
+      {{totalReceita | currency : 'R$&ensp;' }}
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="rendaDespesaLucroTxt">
+    Despesa:&emsp;<div class="rendaDespesaLucroValue">
+      {{totalParcial | currency : 'R$&ensp;' }}
+    </div>
+  </mat-grid-tile>
+
+  
+  <mat-grid-tile class="rendaDespesaLucroTxt">
+    Lucro mensal:&emsp;<div class="rendaDespesaLucroValue">
+      {{totalReceita-totalParcial | currency : 'R$&ensp;' }}
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+
+</mat-grid-list>
+
+
+
+<mat-grid-list cols="5" rowHeight="75px" style="margin-top: 2%;">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+
+  <mat-grid-tile>
+    <div *ngIf="categoriaVisivel">
+      <mat-form-field style="width: 20rem;">
+        <mat-label>Filtro Despesa</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #filter>
+      </mat-form-field>
+    </div>
+    
+  </mat-grid-tile>
+  
+</mat-grid-list>
+
+
+<mat-grid-list cols="5" rowHeight="1:4">
+
+  <mat-grid-tile>
+      <div class="dropDownDiv">
+          <mat-form-field class="dropDown" appearance="fill" style="width: 16rem;" matTooltip="Selecione um mês passado para ver os gastos daquele mês">
+              <mat-label>Meses fechados</mat-label>
+              <mat-select (selectionChange)="onSelected($event.value)">
+            
+                <mat-option *ngFor="let mes of objectList" [value]="mes">
+                  <div [ngSwitch]="mes.mes">
+                    <div *ngSwitchCase="1"> Janeiro / {{mes.ano}} </div>
+                    <div *ngSwitchCase="2"> Fevereiro / {{mes.ano}} </div>
+                    <div *ngSwitchCase="3"> Março / {{mes.ano}} </div>
+                    <div *ngSwitchCase="4"> Abril / {{mes.ano}} </div>
+                    <div *ngSwitchCase="5"> Maio / {{mes.ano}} </div>
+                    <div *ngSwitchCase="6"> Junho / {{mes.ano}} </div>
+                    <div *ngSwitchCase="7"> Julho / {{mes.ano}} </div>
+                    <div *ngSwitchCase="8"> Agosto / {{mes.ano}} </div>
+                    <div *ngSwitchCase="9"> Setembro / {{mes.ano}} </div>
+                    <div *ngSwitchCase="10"> Outubro / {{mes.ano}} </div>
+                    <div *ngSwitchCase="11"> Novembro / {{mes.ano}} </div>
+                    <div *ngSwitchCase="12"> Dezembro / {{mes.ano}} </div>
+                  </div>
+                </mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+      <div class="receitaDiv" *ngIf="categoriaVisivel">
+          <table mat-table [dataSource]="dataSourceReceita" class="mat-elevation-z8" matTooltip="Todas as receitas do mês: {{mesDisplayString}}">
+    
+            <ng-container matColumnDef="nota">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Receita </th>
+              <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+              <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="valor">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+              <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+              <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalReceita | currency : 'R$ ' }} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedReceitaColumns" class="headerFooterClass"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedReceitaColumns;" class="rowClass"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedReceitaColumns" class="headerFooterClass"></tr>
+          </table>
+        </div>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+      <div class="despesaDiv" *ngIf="categoriaVisivel">
+        <table mat-table [dataSource]="dataSourceDespesa" class="mat-elevation-z8" matTooltip="Todas as despesas do mês: {{mesDisplayString}}">
+          <ng-container matColumnDef="nota">
+            <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Despesa Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+            <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="valor">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+              <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+              <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalParcial | currency : 'R$ ' }} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedDespesaColumns" class="headerFooterClass"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedDespesaColumns;" class="rowClass"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedDespesaColumns" class="headerFooterClass"></tr>
+        </table>
+      </div>
+    </mat-grid-tile>
+
+
+  <mat-grid-tile>
+      <div class="resultDiv" *ngIf="resultadoVisivel">
+          <table mat-table [dataSource]="dataSourceResultado" class="mat-elevation-z8" matTooltip="Todas as despesas da categoria '{{categoriaNome}}' do mês: {{mesDisplayString}}">
+              <ng-container matColumnDef="nota">
+                <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> {{categoriaNome}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.nota}} </td>
+                <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> Total </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="valor">
+                  <th mat-header-cell *matHeaderCellDef style="font-weight: bold; font-size: 1rem;"> Valor </th>
+                  <td mat-cell *matCellDef="let element"> {{element.valor | currency : 'R$ ' }} </td>
+                  <td mat-footer-cell *matFooterCellDef style="font-weight: bold; font-size: 1rem;"> {{totalResultado | currency : 'R$ ' }} </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedResultadoColumns" class="headerFooterClass"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedResultadoColumns;" class="rowClass"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedResultadoColumns" class="headerFooterClass"></tr>
+          </table>
+      </div>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+      <div class="dropDownDiv" *ngIf="categoriaVisivel">
+          <mat-form-field class="dropDown" appearance="fill" style="width: 20rem;" matTooltip="Selecione uma categoria para ver todos os gastos dela">
+              <mat-label>Exibir gastos por Categoria</mat-label>
+              <mat-select (selectionChange)="onSelectedCategoria($event.value)">
+            
+                <mat-option *ngFor="let categoria of categoriaList" [value]="categoria">
+                  <div> {{categoria.categoria_nome}} </div>
+                </mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+</mat-grid-list>

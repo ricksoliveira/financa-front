@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="titleRow">
+      <span class="titleText">Finanças&emsp;-&emsp;Login</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-grid-list cols="3" rowHeight="70px" style="margin-top: 5%;" class="content">
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field class="example-form-field">
+            <mat-label>Usuário</mat-label>
+            <input matInput type="text" [(ngModel)]="login.username" (keyup.enter)="signIn()">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field class="example-form-field-pwd">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" [(ngModel)]="login.senha" (keyup.enter)="signIn()">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile>
+        <button matTooltip="Logar" class="buttonDiv" mat-raised-button color="primary" (click)="signIn()">
+            Log-in
+            <mat-icon>lock_open</mat-icon>
+        </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+</mat-grid-list>

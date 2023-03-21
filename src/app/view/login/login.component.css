@@ -1,0 +1,32 @@
+.titleRow{
+    font-size: 1.75rem;
+    height: 80px;
+}
+
+.titleText{
+    margin-left: 5%;
+}
+
+.content{
+    margin-top: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.example-form-field{
+    width: 350px;
+    position: absolute;
+    top: 5px;
+}
+
+.example-form-field-pwd{
+    width: 350px;
+    position: absolute;
+    top: 5px;
+}
+
+.buttonDiv{
+    position: absolute;
+    width: 200px;
+    bottom: 5px;
+}

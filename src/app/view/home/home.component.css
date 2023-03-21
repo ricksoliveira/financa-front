@@ -1,0 +1,18 @@
+.titleRow{
+    font-size: 1.75rem;
+    height: 80px;
+}
+
+.titleText{
+    margin-left: 5%;
+}
+
+.tabGroup{
+    margin-top: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
